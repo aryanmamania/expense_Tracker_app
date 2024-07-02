@@ -42,7 +42,6 @@ const users = [
 	},
 ];
 
-// Hardcoded array of 5 transactions
 const transactions = [
 	{
 		_id: "1",
