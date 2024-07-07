@@ -6,38 +6,77 @@ import TransactionForm from "../components/TransactionForm.jsx";
 
 import { MdLogout } from "react-icons/md";
 import { LOGOUT } from "../graphql/mutations/user.mutation.js";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_TRANSACTION_STATISTICS } from "../graphql/queries/transaction.query.js";
+import { useEffect, useState } from "react";
+import { GET_AUTHENTICATED_USER } from "../graphql/queries/user.query.js"
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HomePage = () => {
-	const chartData = {
+	const { data } = useQuery(GET_TRANSACTION_STATISTICS);
+	const { data: authUserData } = useQuery(GET_AUTHENTICATED_USER);
+
+	const [logout, { loading, client }] = useMutation(LOGOUT, {
+		refetchQueries: ["GetAuthenticatedUser"],
+	});
+
+	const [chartData, setChartData] =  useState({
 		labels: ["Saving", "Expense", "Investment"],
 		datasets: [
 			{
-				label: "%",
-				data: [13, 8, 3],
-				backgroundColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235)"],
-				borderColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235, 1)"],
+				label: "$",
+				data: [],
+				backgroundColor: [],
+				borderColor: [],
 				borderWidth: 1,
 				borderRadius: 30,
 				spacing: 10,
 				cutout: 130,
 			},
 		],
-	};
+	});
 
-const [logout, {loading}] =	useMutation(LOGOUT, {
-	refetchQueries: ["GetAuthenticatedUser"],
-}
+useEffect(() => {
+	if(data?.categoryStatistics){
+		const categories = data.categoryStatistics.map((stat) => stat.category); 
+		const totalAmount = data.categoryStatistics.map((stat) => stat.totalAmount)
 
-)
+		const backgroundColors = [];
+		const borderColors = [];
 
-	const handleLogout =  async () => {
-		try{
-await logout()
-		}catch (error){
+		categories.forEach(category => {
+		if(category === "saving") {
+			backgroundColors.push("rgba(75, 192, 192)");
+			borderColors.push("rgba(255, 99, 132)");
+		}	else if (category === "expense"){
+			backgroundColors.push("rgba(255, 99, 132)");
+			borderColors.push("rgba(255, 99, 132)");
+		}   else if (category === 'investment'){
+			backgroundColors.push("rgba(54, 162, 235)");
+			borderColors.push("rgba(54, 162, 235)");
+		}
+
+
+		})
+		setChartData(prev => ({
+			labels: categories,
+			datasets:[
+				{
+				...prev.datasets[0],
+				data: totalAmount,
+				borderColors : borderColors,
+		}	]
+		}))
+	}
+}, [data]);
+
+	const handleLogout = async () => {
+		try {
+			await logout()
+			client.resetStore();
+		} catch (error) {
 			console.log("Error logging Out :", error)
 			toast.error(error.message);
 		}
@@ -53,7 +92,7 @@ await logout()
 						Spend wisely, track wisely
 					</p>
 					<img
-						src={"https://tecdn.b-cdn.net/img/new/avatars/2.webp"}
+						src={authUser.profilePicture}
 						className='w-11 h-11 rounded-full border cursor-pointer'
 						alt='Avatar'
 					/>
