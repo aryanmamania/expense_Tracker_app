@@ -81,9 +81,6 @@ useEffect(() => {
 			toast.error(error.message);
 		}
 	};
-
-
-
 	return (
 		<>
 			<div className='flex flex-col gap-6 items-center max-w-7xl mx-auto z-20 relative justify-center'>
@@ -101,9 +98,10 @@ useEffect(() => {
 					{loading && <div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>}
 				</div>
 				<div className='flex flex-wrap w-full justify-center items-center gap-6'>
+					{data?.categoriesStatistics.length > 0 && (	
 					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
 						<Doughnut data={chartData} />
-					</div>
+					</div>   )}
 
 					<TransactionForm />
 				</div>
