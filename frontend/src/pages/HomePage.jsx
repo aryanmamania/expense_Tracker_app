@@ -89,7 +89,7 @@ useEffect(() => {
 						Spend wisely, track wisely
 					</p>
 					<img
-						src={authUser.profilePicture}
+						src={authUserData?.authUser.profilePicture}
 						className='w-11 h-11 rounded-full border cursor-pointer'
 						alt='Avatar'
 					/>
