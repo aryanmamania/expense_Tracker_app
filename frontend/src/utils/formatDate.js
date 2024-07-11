@@ -4,6 +4,7 @@ export function formatDate(timestamp) {
 	return date.toLocaleDateString("en-US", options);
 }
 
+// Example usage:
 const timestamp = 1704067200000;
 const formattedDate = formatDate(timestamp);
 console.log(formattedDate); 
