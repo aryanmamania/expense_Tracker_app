@@ -42,7 +42,7 @@ const TransactionForm = () => {
 						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
 						htmlFor='description'
 					>
-						Transaction
+						Transaction *
 					</label>
 					<input
 						className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
@@ -61,7 +61,7 @@ const TransactionForm = () => {
 						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
 						htmlFor='paymentType'
 					>
-						Payment Type
+						Payment Type *
 					</label>
 					<div className='relative'>
 						<select
@@ -78,7 +78,7 @@ const TransactionForm = () => {
 								xmlns='http://www.w3.org/2000/svg'
 								viewBox='0 0 20 20'
 							>
-								<path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+								<paAdd Transactionth d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
 							</svg>
 						</div>
 					</div>
@@ -90,7 +90,7 @@ const TransactionForm = () => {
 						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
 						htmlFor='category'
 					>
-						Category
+						Category *
 					</label>
 					<div className='relative'>
 						<select
@@ -114,10 +114,13 @@ const TransactionForm = () => {
 					</div>
 				</div>
 
-				{/* AMOUNT */}
+				{/* AMOUNT  yahan dalna hai rs ka symbol*/ }
 				<div className='w-full flex-1 mb-6 md:mb-0'>
 					<label className='block uppercase text-white text-xs font-bold mb-2' htmlFor='amount'>
-						Amount($)
+						Amount *
+
+
+						
 					</label>
 					<input
 						className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
@@ -136,7 +139,7 @@ const TransactionForm = () => {
 						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
 						htmlFor='location'
 					>
-						Location
+						Location 
 					</label>
 					<input
 						className='appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
@@ -150,7 +153,7 @@ const TransactionForm = () => {
 				{/* DATE */}
 				<div className='w-full flex-1'>
 					<label className='block uppercase tracking-wide text-white text-xs font-bold mb-2' htmlFor='date'>
-						Date
+						Date *
 					</label>
 					<input
 						type='date'

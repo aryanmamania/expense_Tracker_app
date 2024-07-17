@@ -12,22 +12,6 @@ import { GET_TRANSACTION_STATISTICS } from "../graphql/queries/transaction.query
 import { GET_AUTHENTICATED_USER } from "../graphql/queries/user.query";
 import { useEffect, useState } from "react";
 
-// const chartData = {
-// 	labels: ["Saving", "Expense", "Investment"],
-// 	datasets: [
-// 		{
-// 			label: "%",
-// 			data: [13, 8, 3],
-// 			backgroundColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235)"],
-// 			borderColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235, 1)"],
-// 			borderWidth: 1,
-// 			borderRadius: 30,
-// 			spacing: 10,
-// 			cutout: 130,
-// 		},
-// 	],
-// };
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HomePage = () => {
@@ -42,7 +26,7 @@ const HomePage = () => {
 		labels: [],
 		datasets: [
 			{
-				label: "$",
+				label: "₹",
 				data: [],
 				backgroundColor: [],
 				borderColor: [],
@@ -92,8 +76,6 @@ const HomePage = () => {
 	const handleLogout = async () => {
 		try {
 			await logout();
-			// Clear the Apollo Client cache FROM THE DOCS
-			// https://www.apollographql.com/docs/react/caching/advanced-topics/#:~:text=Resetting%20the%20cache,any%20of%20your%20active%20queries
 			client.resetStore();
 		} catch (error) {
 			console.error("Error logging out:", error);
@@ -117,6 +99,7 @@ const HomePage = () => {
 					{/* loading spinner */}
 					{loading && <div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>}
 				</div>
+			
 				<div className='flex flex-wrap w-full justify-center items-center gap-6'>
 					{data?.categoryStatistics.length > 0 && (
 						<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>

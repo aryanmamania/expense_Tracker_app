@@ -14,6 +14,10 @@ function App() {
 
 	if (loading) return null;
 
+
+	/* MONGO_URI=mongodb://localhost:27017  */
+
+	
 	return (
 		<>
 			{data?.authUser && <Header />}
