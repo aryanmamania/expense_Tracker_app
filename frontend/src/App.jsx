@@ -1,3 +1,5 @@
+
+
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -15,7 +17,6 @@ function App() {
 	if (loading) return null;
 
 
-	/* MONGO_URI=mongodb://localhost:27017  */
 
 	
 	return (
@@ -37,3 +38,14 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+	/*MONGO_URI=mongodb+srv://aryanmamania17:Aryanmamania@aryancluster.fknc6uu.mongodb.net/gql-db?retryWrites=true&w=majority&appName=AryanCluster
+	  MONGO_URI=mongodb://localhost:27017  */
+
+
+
+	

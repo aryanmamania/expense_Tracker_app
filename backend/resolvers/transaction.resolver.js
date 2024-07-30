@@ -1,5 +1,5 @@
 
-	import Transaction from "../models/transaction.model.js";
+import Transaction from "../models/transaction.model.js";
 import User from "../models/user.model.js";
 
 const transactionResolver = {
@@ -39,15 +39,20 @@ const transactionResolver = {
 				categoryMap[transaction.category] += transaction.amount;
 			});
 
-			
+
 
 			return Object.entries(categoryMap).map(([category, totalAmount]) => ({ category, totalAmount }));
-			
+
 		},
 	},
-	Mutation: {
+
+	Mutation: { 
 		createTransaction: async (_, { input }, context) => {
 			try {
+				if (!input.amount) {
+					throw new Error("Amount is required");
+				}
+	
 				const newTransaction = new Transaction({
 					...input,
 					userId: context.getUser()._id,
@@ -56,9 +61,10 @@ const transactionResolver = {
 				return newTransaction;
 			} catch (err) {
 				console.error("Error creating transaction:", err);
-				throw new Error("Error creating transaction");
+				throw new Error("Error creating transaction ");
 			}
 		},
+
 		updateTransaction: async (_, { input }) => {
 			try {
 				const updatedTransaction = await Transaction.findByIdAndUpdate(input.transactionId, input, {

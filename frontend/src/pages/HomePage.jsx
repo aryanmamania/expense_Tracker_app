@@ -95,7 +95,16 @@ const HomePage = () => {
 						className='w-11 h-11 rounded-full border cursor-pointer'
 						alt='Avatar'
 					/>
-					{!loading && <MdLogout className='mx-2 w-5 h-5 cursor-pointer' onClick={handleLogout} />}
+
+					{!loading && (
+						<MdLogout 
+							className='mx-2 w-5 h-5 cursor-pointer' 
+							onClick={handleLogout} 
+							title="Logout"
+							
+						/>
+						
+					)}
 					{/* loading spinner */}
 					{loading && <div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>}
 				</div>
@@ -103,7 +112,7 @@ const HomePage = () => {
 				<div className='flex flex-wrap w-full justify-center items-center gap-6'>
 					{data?.categoryStatistics.length > 0 && (
 						<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
-							<Doughnut data={chartData} />
+							<Doughnut data={chartData} /> 
 						</div>
 					)}
 
@@ -114,4 +123,5 @@ const HomePage = () => {
 		</>
 	);
 };
+
 export default HomePage;

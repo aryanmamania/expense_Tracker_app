@@ -11,6 +11,16 @@ const userResolver = {
 				if (!username || !name || !password || !gender) {
 					throw new Error("All fields are required");
 				}
+
+				if (password.length < 8) {
+					throw new Error("Password should be at least 8 characters long.");
+				}
+
+			 const specialCharRegex = /[#!@$%^&*[\]-]/;
+
+			 if (!specialCharRegex.test(password)) {
+			   throw new Error("Password should contain a special character");
+			 }				
 				const existingUser = await User.findOne({ username });
 				if (existingUser) {
 					throw new Error("User already exists");

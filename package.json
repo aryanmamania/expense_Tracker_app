@@ -23,6 +23,7 @@
     "graphql-passport": "^0.6.8",
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "react-tooltip": "^5.27.1"
   }
 }

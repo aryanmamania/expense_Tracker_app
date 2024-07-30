@@ -5,6 +5,7 @@ import { GET_TRANSACTION, GET_TRANSACTION_STATISTICS } from "../graphql/queries/
 import { UPDATE_TRANSACTION } from "../graphql/mutations/transaction.mutation";
 import toast from "react-hot-toast";
 import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
+import { Link } from "react-router-dom";
 
 const TransactionPage = () => {
 	const { id } = useParams();
@@ -117,6 +118,8 @@ const TransactionPage = () => {
 							>
 								<option value={"card"}>Card</option>
 								<option value={"cash"}>Cash</option>
+								<option value={"UPI"}>UPI</option>
+								<option value={"bank transfer"}>Bank transfer</option>
 							</select>
 							<div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
 								<svg
@@ -229,6 +232,17 @@ const TransactionPage = () => {
 				>
 					{loadingUpdate ? "Updating..." : "Update Transaction"}
 				</button>
+
+
+
+				<p>
+							
+								<Link to='/' 
+									className='text-white font-bold w-full rounded px-20 py-3 bg-gradient-to-br from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600 mt-3 text-center' >
+									Go back
+								</Link>
+							</p>
+
 			</form>
 		</div>
 	);

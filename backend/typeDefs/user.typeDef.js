@@ -25,6 +25,7 @@ const userTypeDef = `#graphql
     name: String!
     password: String!
     gender: String!
+   
   }
 
   input LoginInput {
